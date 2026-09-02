@@ -1,0 +1,60 @@
+﻿@model ActivitySystem.Models.DueDate
+
+
+@{
+    ViewData["Title"] = "Edit Due Date - Kaizen Activity System";
+    ViewData["Page"] = "Edit Due Date";
+    Layout = "_Main_Layout";
+}
+
+<div class="row col-md-12">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">
+                    แก้ไขวันที่รอบกิจกรรม / Edit Due Date
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="container">
+                    <form asp-action="Edit">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="DueDateNo" />
+                        <div class="row form-group">
+                            <div class="col-md-3 pr-1">
+                                <label asp-for="StartingDate" class="control-label">เริ่มรอบกิจกรรม </br> Starting Date:</label>
+                            </div>
+                            <div class="col-md-3 pr-0">
+                                @*<input asp-for="StartingDate" class="form-control" disabled />*@
+                                @Html.DisplayFor(modelItem => Model.StartingDate)
+                            </div>
+                            <div class="col-md-3 pr-0">
+                                <input type="date" asp-for="StartingDate" class="form-control" />
+                                <span asp-validation-for="StartingDate" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-3 pr-1">
+                                <label asp-for="EndingDate" class="control-label">สิ้นสุดรอบกิจกรรม </br> Ending Date:</label>
+                            </div>
+                            <div class="col-md-3 pr-0">
+                                @*<input asp-for="EndingDate" class="form-control" disabled />*@
+                                @Html.DisplayFor(modelItem => Model.EndingDate)
+                            </div>
+                            <div class="col-md-3 pr-0">
+                                <input type="date" asp-for="EndingDate" class="form-control" />
+                                <span asp-validation-for="EndingDate" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Save" class="btn btn-default" />
+                        </div>
+                    </form>
+                </div>
+                <div>
+                    <i class="fa fa-history"></i><a asp-action="Index"> Back to List</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

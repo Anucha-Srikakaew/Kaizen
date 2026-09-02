@@ -1,0 +1,222 @@
+﻿@model IEnumerable<ActivitySystem.ViewModel.View_Kaizens>
+
+@{
+    ViewData["Title"] = "Library - Kaizen Activity System";
+    ViewData["Page"] = "Library";
+    Layout = "_Main_Layout";
+}
+
+<script>
+    var showAlert = "@ViewBag.showAlert";
+    var alertMessage = "@ViewBag.alertMessage";
+    if (showAlert === "True") {
+        alert(alertMessage);
+    }
+</script>
+
+
+<div class="row col-md-12">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">
+                    รายการไคเซ็นทั้งหมด / Library
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="container dl-horizontal">
+                    <form asp-controller="Kaizens" asp-action="Library" method="post">
+                        <div class=" row form-group">
+                            <div class="col-md-2 pr-1">
+                                <label class="control-label">ค้นหาตามรอบกิจกรรม </br>(Due Date):</label>
+                            </div>
+                            <div class="col-md-8 pr-1">
+                                <select class="form-control" asp-items="ViewBag.DueDate" name="searchNo" onchange="clickMe()">
+                                    <option selected>--- แสดงผลทั้งหมด ---</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2 pr-0">
+                                <button type="submit" value="Search" class="btn btn-primary">
+                                    <div style="color: white" text-align: center;>Search</div>
+                                </button>
+                            </div>
+                        </div>
+                        <div class=" row form-group">
+                            <div class="col-md-2 pr-1">
+                                <label class="control-label">ค้นหาตามแผนก </br>(Department):</label>
+                            </div>
+                            <div class="col-md-8 pr-1">
+                                <select class="form-control" asp-items="ViewBag.DeptTab" name="searchDept" onchange="clickMe()">
+                                    <option selected>--- แสดงผลทั้งหมด ---</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class=" row form-group">
+                            <div class="col-md-2 pr-0">
+                                <label class="control-label">จำนวนเรื่องที่ส่ง </br>(Kaizen Count):</label>
+                            </div>
+                            <div class="col-md-1 pr-0">
+                                <label class="control-label">@ViewBag.CntKaizen</label>
+                            </div>
+                            <div class="col-md-3 pr-0">
+                                <label class="control-label">จำนวนเงินที่ลด </br>(CR Sum.):</label>
+                            </div>
+                            <div class="col-md-1 pr-0" align="left">
+                                <label class="control-label" align="left">@ViewBag.SumPrice</label>
+                            </div>
+                            <div class="col-md-3 pr-0">
+                                <label class="control-label">จำนวนเงินรางวัล </br>(Award Price):</label>
+                            </div>
+                            <div class="col-md-1 pr-0" align="left">
+                                <label class="control-label" align="left">@ViewBag.SumPrice</label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="container1">
+                    <div class=" row form-group">
+                        <div class="col-md-2 pr-0">
+                            <label class="control-label">คำค้นหา (Search): </label>
+                        </div>
+                        <div class="col-md-10 pr-0">
+                            <label class="control-label" align="left">@ViewBag.Search</label>
+                        </div>
+                    </div>
+                    <table class="table table-striped table-hover" id="dtBasicExample" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th align="center">
+                                    Kaizen No.
+                                </th>
+                                <th align="center">
+                                    Dept.
+                                </th>
+                                <th align="center">
+                                    EMP ID
+                                </th>
+                                <th align="center">
+                                    EMP Name
+                                </th>
+                                <th align="center">
+                                    Title
+                                </th>
+                                <th align="center">
+                                   Date
+                                </th>
+                                <th align="center">
+                                    Type
+                                </th>
+                                <th align="center">
+                                    Detail
+                                </th>
+                                <th align="right">
+                                    Cost Saving
+                                </th>
+                                <th align="center">
+                                    Status
+                                </th>
+                                <th>Detail</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model != null && Model.Any())
+                            {
+                                @foreach (var item in Model)
+                                {
+                                    if (item != null)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.KaizenRef)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.DeptNo)
+                                            </td>
+                                            <td> 
+                                                @Html.DisplayFor(modelItem => item.IdEmp)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.NameEmp)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Title)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Date)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.ActTypeTh)
+                                                /
+                                                @Html.DisplayFor(modelItem => item.ActTypeEng)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.ActDetail)
+                                            </td>
+                                            <td align="right">
+                                                @Html.DisplayFor(modelItem => item.CostSaving)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.KzStatus)
+                                            </td>
+                                            <td>
+                                                <a asp-action="LibraryDetails" asp-route-id="@item.KaizenNo" target="_blank">Detail</a>
+                                            </td>
+                                        </tr>
+                                    }
+                                    else
+                                    {
+                                        <tr>
+                                            <td colspan="12" align="center">No records found.</td>
+                                        </tr>
+                                    }
+
+                                }
+                            }
+                            else
+                            {
+                            <tr>
+                                <td colspan="12" align="center">No records found.</td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+@*     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#dtBasicExample').DataTable({
+                order: [[0, 'desc']],
+                dom: 'Bfrtip', // Adds the export buttons
+                buttons: [
+                    {
+                        extend: 'excelHtml5',
+                        title: 'Exported Data' // Optional: Custom title for the Excel file
+                    }
+                ]
+            });
+        });
+    </script> *@
+
+    <script>
+        $(document).ready(function () {
+            $('#dtBasicExample').DataTable({
+                order: [[10, 'desc']]
+            });
+        });
+    </script>
+} 
+

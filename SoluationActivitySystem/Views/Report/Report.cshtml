@@ -1,0 +1,127 @@
+﻿@{
+    ViewData["Title"] = "Report - Kaizen Activity System";
+    ViewData["Page"] = "Report";
+    Layout = "_Main_Layout";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card ">
+            <div class="card-header ">
+                <h5 class="card-title">
+                    Report - รายงาน
+                </h5>
+                <p class="card-category">Kaizen Activity Management System</p>
+            </div>
+            <div class="card-body">
+                <div class="container dl-horizontal">
+                    <form asp-controller="Report" asp-action="Report" method="post">
+                        <div class=" row form-group">
+                            <div class="col-md-2 pr-1">
+                                <label class="control-label">ค้นหาตามรอบกิจกรรม </br>(Due Date):</label>
+                            </div>
+                            <div class="col-md-8 pr-1">
+                                <select class="form-control" asp-items="ViewBag.DueDate" name="searchNo" onchange="clickMe()">
+                                    <option selected>--- แสดงผลทั้งหมด ---</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2 pr-0">
+                                <button type="submit" value="Search" class="btn btn-primary">
+                                    <div style="color: white" text-align: center;>Add Search</div>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="container">
+                    <div class=" row form-group">
+                        <div class="col-md-2 pr-0">
+                            <label class="control-label">คำค้นหารายงาน (Search): </label>
+                        </div>
+                        <div class="col-md-10 pr-0">
+                            <label class="control-label" align="left">@ViewBag.Search</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                    <div class="card-body ">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-6 col-sm-6">
+                                <div class="card card-stats">
+                                    <div class="card-body ">
+                                        <div class="row">
+                                            <div class="col-5 col-md-4">
+                                                <div class="icon-big text-center icon-warning">
+                                                    <i class="nc-icon nc-share-66 text-warning"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-7 col-md-8">
+                                                <div class="numbers">
+                                                    <p class="card-category">
+                                                        <a class="btn btn-warning" asp-controller="Report" asp-action="rptVoteKaizen">Vote Award Report</a>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-6">
+                                <div class="card card-stats">
+                                    <div class="card-body ">
+                                        <div class="row">
+                                            <div class="col-5 col-md-4">
+                                                <div class="icon-big text-center icon-warning">
+                                                    <i class="nc-icon nc-paper text-danger"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-7 col-md-8">
+                                                <div class="numbers">
+                                                    <p class="card-category">
+                                                        <a class="btn btn-danger" asp-controller="Report" asp-action="rptSumKaizen">Summary Kaizen Report</a>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-6">
+                                <div class="card card-stats">
+                                    <div class="card-body ">
+                                        <div class="row">
+                                            <div class="col-5 col-md-4">
+                                                <div class="icon-big text-center icon-warning">
+                                                    <i class="nc-icon nc-ruler-pencil text-success"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-7 col-md-8">
+                                                <div class="numbers">
+                                                    <p class="card-category">
+                                                        <a class="btn btn-success" asp-controller="Report" asp-action="rptSignKaizen">Summary Kaizen Report (Signature)</a>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                    <div class="row">
+                        <div class="update ml-auto mr-auto">
+                            <center>
+                                <img src="~/img/Logo_KAIZEN_FY24.png" alt="MyKaizen" style="width: 50%; height: auto; max-width: 40%" ;>
+                            </center>
+                            <br />
+
+                        </div>
+                    </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+

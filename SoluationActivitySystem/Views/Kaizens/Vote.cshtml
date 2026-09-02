@@ -1,0 +1,231 @@
+﻿@model IEnumerable<ActivitySystem.ViewModel.View_Kaizens>
+
+@{
+    ViewData["Title"] = "Manager - Kaizen Activity System";
+    ViewData["Page"] = "Vote by Manager";
+    Layout = "_Main_Layout";
+}
+
+<script>
+    var showAlert = "@ViewBag.showAlert";
+    var alertMessage = "@ViewBag.alertMessage";
+    if (showAlert === "True") {
+        alert(alertMessage);
+    }
+</script>
+
+<div class="row col-md-12">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">
+                    รายการโหวตไคเซ็นประจำเดือนโดยผู้จัดการ / Kaizen Vote List by Manager
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="container dl-horizontal">
+                    <form asp-controller="Kaizens" asp-action="Vote" method="post">
+                        <div class=" row form-group">
+                            <div class="col-md-3 pr-1">
+                                <label class="control-label">ค้นหาตามรอบกิจกรรม </br>(Due Date):</label>
+                            </div>
+                            <div class="col-md-6 pr-1">
+                                <select class="form-control" asp-items="ViewBag.DueDate" name="searchNo" onchange="clickMe()">
+                                    <option selected>--- แสดงผลทั้งหมด ---</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3 pr-0">
+                                <button type="submit" value="Search" class="btn btn-primary">
+                                    <div style="color: white" text-align: center;>Search</div>
+                                </button>
+                            </div>
+                        </div>
+                        <div class=" row form-group">
+                            <div class="col-md-3 pr-0">
+                                <label class="control-label">จำนวนเรื่องที่ส่ง </br>(Kaizen Count):</label>
+                            </div>
+                            <div class="col-md-1 pr-0">
+                                <label class="control-label">@ViewBag.CntKaizen</label>
+                            </div>
+                            <div class="col-md-3 pr-0">
+                                <label class="control-label">จำนวนเงินที่ลด </br>(CR Sum.):</label>
+                            </div>
+                            <div class="col-md-1 pr-0" align="left">
+                                <label class="control-label" align="left">@ViewBag.SumPrice</label>
+                            </div>
+                            <div class="col-md-3 pr-0">
+                                <label class="control-label">จำนวนเงินรางวัล </br>(Award Price):</label>
+                            </div>
+                            <div class="col-md-1 pr-0" align="left">
+                                <label class="control-label" align="left">@ViewBag.SumPrice</label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="container1">
+                    <div class=" row form-group">
+                        <div class="col-md-2 pr-0">
+                            <label class="control-label">คำค้นหา (Search): </label>
+                        </div>
+                        <div class="col-md-10 pr-0">
+                            <label class="control-label" align="left">@ViewBag.Search</label>
+                        </div>
+                    </div>
+                    <table class="table table-hover" id="dtBasicExample" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th align="center" width="400px">
+                                    Kaizen No.
+                                </th>
+                                <th align="center">
+                                    EMP ID
+                                </th>
+                                <th align="center">
+                                    EMP Name
+                                </th>
+                                <th align="center" width="500px">
+                                    Title
+                                </th>
+                                <th align="center">
+                                    Date
+                                </th>
+                                <th align="center" width="500px">
+                                    Type
+                                </th>
+                                <th align="center" width="500px">
+                                    Detail
+                                </th>
+                                <th align="center" width="1100px">
+                                    Cost Saving
+                                </th>
+                                <th align="center" width="300px">
+                                    Status
+                                </th>
+                                <th align="center" width="300px">
+                                    Kaizen
+                                </th>
+                                <th align="center" width="300px">
+                                    CR
+                                </th>
+                                <th align="center" width="300px">Vote</th>
+                                <th></th>
+                                <th align="center" width="1000px"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model != null)
+                            {
+                                @foreach (var item in Model)
+                                {
+                                    @if (item != null)
+                                    {
+                                        <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.KaizenRef)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.IdEmp)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.NameEmp)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Title)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Date)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ActTypeTh)
+                                        /
+                                        @Html.DisplayFor(modelItem => item.ActTypeEng)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ActDetail)
+                                    </td>
+                                    <td align="right">
+                                        @Html.DisplayFor(modelItem => item.CostSaving)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.KzStatus)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CntKaizen)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CntCR)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CntVote)
+                                    </td>
+                                    <td>
+                                        <a asp-action="LibraryDetails" asp-route-id="@item.KaizenNo" target="_blank">Detail</a>
+                                    </td>
+                                    <form asp-action="VoteCancel" method="post">
+                                        <td align="center">
+                                            <input type="hidden" name="KaizenNo" value="@item.KaizenNo" />
+                                            @if (item.KzStatus == "Vote")
+                                            {
+                                                <button type="submit" value="NotVote" class="btn btn-primary btn-round">
+                                                    <div style="color: white" text-align: center;>Not Vote</div>
+                                                </button>
+                                            }
+                                        </td>
+                                    </form>
+                                </tr>
+                                    }
+                                    else
+                                    {
+                                        <tr>
+                                            <td colspan="14" align="center">No records found.</td>
+                                        </tr>
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="14" align="center">No records found.</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        var showAlert = "@ViewBag.showAlert";
+        var alertMessage = "@ViewBag.alertMessage";
+        if (showAlert === "True") {
+            alert(alertMessage);
+        }
+    </script>
+
+    <script>
+
+        $(document).ready(function () {
+            $('#dtBasicExample').DataTable();
+            //$('.dataTables_length').addClass('bs-select');
+        });
+
+           //$('#sortTable').DataTable();
+
+    </script>
+
+}
+
+
+
+
+
+
+
+

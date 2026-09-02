@@ -1,0 +1,77 @@
+﻿@model IEnumerable<ActivitySystem.Models.DueDate>
+
+@{
+    ViewData["Title"] = "Due Date - Kaizen Activity System";
+    ViewData["Page"] = "Due Date";
+    Layout = "_Main_Layout";
+}
+
+<script>
+    var showAlert = "@ViewBag.showAlert";
+    var alertMessage = "@ViewBag.alertMessage";
+    if (showAlert === "True") {
+        alert(alertMessage);
+    }
+</script>
+
+<div class="row col-md-12">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <div style="text-align:left">
+                    <a asp-area="" asp-controller="DueDates" asp-action="Create">
+                        <input type="submit" class="btn btn-default" value="Create New" />
+                    </a>
+                </div>
+                <h5 class="card-title">
+                    กำหนดรอบกิจกรรม / Due Date
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="container">
+                    <table class="table table-striped table-hover" id="dtBasicExample" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Starting Date
+                                </th>
+                                <th>
+                                    Ending Date
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.StartingDate)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.EndingDate)
+                                    </td>
+                                    <td>
+                                        <a asp-action="Edit" asp-route-id="@item.DueDateNo">Edit</a> |
+                                        <a asp-action="Details" asp-route-id="@item.DueDateNo">Details</a> |
+                                        <a asp-action="Delete" asp-route-id="@item.DueDateNo">Delete</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        $(document).ready(function () {
+            $('#dtBasicExample').DataTable();
+        });
+    </script>
+}

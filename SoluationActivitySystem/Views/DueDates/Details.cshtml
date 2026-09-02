@@ -1,0 +1,45 @@
+﻿@model ActivitySystem.Models.DueDate
+
+@{
+    ViewData["Title"] = "Due Date Detail - Kaizen Activity System";
+    ViewData["Page"] = "Due Date Detail ";
+    Layout = "_Main_Layout";
+}
+
+<div class="row col-md-12">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">
+                    รายละเอียดรอบกิจกรรม / Due Date Detail
+                </h5>
+            </div>
+            <div class="card-body">
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.StartingDate)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.StartingDate)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.EndingDate)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.EndingDate)
+                    </dd>
+                </dl>
+                <div>
+                    <a asp-action="Edit" asp-route-id="@Model.DueDateNo">Edit</a> | 
+                    <i class="fa fa-history"></i><a asp-action="Index"> Back to List</a>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

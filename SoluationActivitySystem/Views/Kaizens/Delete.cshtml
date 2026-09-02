@@ -1,0 +1,140 @@
+﻿@model ActivitySystem.ViewModel.View_Kaizens
+
+@{
+    ViewData["Title"] = "Delete Topic - Kaizen Activity System";
+    ViewData["Page"] = "Delete Topic";
+    Layout = "_Main_Layout";
+}
+
+<script>
+    var showAlert = "@ViewBag.showAlert";
+    var alertMessage = "@ViewBag.alertMessage";
+    if (showAlert === "True") {
+        alert(alertMessage);
+    }
+</script>
+
+<div class="row col-md-12">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">
+                    ยกเลิกเอกสาร / Are you sure you want to delete this? <p class="text-danger" >* ระบบสามารถยกเลิกได้เฉพาะเอกสารที่ยังไม่มีการอนุมัติเท่านั้น (InProcess)</p>
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="container">
+                    <form asp-action="">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="row form-group">
+                            <div class="col-md-3 pr-1">
+                                <label asp-for="Title" class="control-label">หัวข้อเรื่อง </br>(Topic):</label>
+                            </div>
+                            <div class="col-md-9 pr-0">
+                                <input asp-for="Title" class="form-control" disabled />
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-3 pr-0">
+                                <label asp-for="Date" class="control-label">วันที่เสนอแนะ </br>(Date):</label>
+                            </div>
+                            <div class="col-md-3 pr-0">
+                                <input type="text" asp-for="Date" class="form-control" disabled /></input>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-3 pr-0">
+                                <label asp-for="NoActType" class="control-label">ประเภทของกิจกรรม </br>(Kaizen Type):</label>
+                            </div>
+                            <div class="col-md-3 pr-0">
+                                <input asp-for="ActTypeTh" class="form-control" disabled /> <br>
+                                <input asp-for="ActTypeEng" class="form-control" disabled />
+                            </div>
+                            <div class="col-md-2 pr-0">
+                                <label asp-for="ActDetail" class="control-label">อื่น ๆ โปรดระบุ </br>(Other):</label>
+                            </div>
+                            <div class="col-md-4 pr-0">
+                                <input asp-for="ActDetail" class="form-control" disabled />
+                            </div>
+                        </div>
+                        <div class="card-header">
+                            <h6 class="card-title">
+                                ก่อนปรับปรุง/ปัญหา (Before Improve/Present Problem):
+                            </h6>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-3 pr-0">
+                                <label asp-for="ImpBefore" class="control-label">รูปภาพก่อนการปรับปรุง </br>(Before Image)</label>
+                            </div>
+                            <div class="col-md-9 pr-0">
+                                @*<input asp-for="ImpBefore" class="form-control" disabled />*@
+                                <img src="@("~/ImagesUploaded/"+ Model.ImpBefore )" asp-append-version="true" width="100%" height="100%" disabled />
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-3 pr-0">
+                                <label asp-for="Problem" class="control-label">ปัญหาที่พบ </br>(Problem):</label>
+                            </div>
+                            <div class="col-md-9 pr-0">
+                                <textarea rows="4" asp-for="Problem" class="form-control" maxlength="3000" disabled></textarea>
+                            </div>
+                        </div>
+                        <div class="card-header">
+                            <h6 class="card-title">
+                                หลังปรับปรุง/สิ่งที่คาดว่าจะเป็น (After Improve):
+                            </h6>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-3 pr-0">
+                                <label asp-for="ImpAfter" class="control-label">รูปภาพหลังการปรับปรุง </br>(After Image)</label>
+                            </div>
+                            <div class="col-md-9 pr-0">
+                                @*<input asp-for="ImpAfter" class="form-control" disabled />*@
+                                <img src="@("~/ImagesUploaded/"+ Model.ImpAfter )" asp-append-version="true" width="100%" height="100%" />
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-3 pr-0">
+                                <label asp-for="Result" class="control-label">ผลที่ได้ </br>(Result):</label>
+                            </div>
+                            <div class="col-md-9 pr-0">
+                                <textarea rows="4" asp-for="Result" class="form-control" maxlength="3000" disabled></textarea>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row form-group">
+                            <div class="col-md-3 pr-0">
+                                <label asp-for="CostSaving" class="control-label">จำนวนเงินที่สามารถลดได้ </br>(Cost Saving):</label>
+                            </div>
+                            <div class="col-md-3 pr-0">
+                                <input asp-for="CostSaving" class="form-control" disabled />
+                            </div>
+                            <div class="col-md-1 pr-0">
+                                <label class="control-label">บาท</br>(Baht)</label>
+                            </div>
+                            <div class="col-md-2 pr-0">
+                                <label asp-for="KzStatus" class="control-label">สถานะเอกสาร </br>(Status):</label>
+                            </div>
+                            <div class="col-md-3 pr-0">
+                                <input asp-for="KzStatus" class="form-control" disabled />
+                            </div>
+                        </div>
+
+                    </form>
+
+                    <form asp-action="Delete">
+                        <input type="hidden" asp-for="KaizenNo" />
+                        <input type="submit" value="Delete" class="btn btn-default"  onclick="return confirm('คุณต้องการลบเอกสารนี้หรือไม่? / Are you sure you want to delete this ducement?')"/>
+                    </form>
+                </div>
+
+            </div>
+            <div class="card-footer ">
+                <div class="stats">
+                    <i class="fa fa-history"></i>
+                    <a asp-action="Index">Back to MyKaizen</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

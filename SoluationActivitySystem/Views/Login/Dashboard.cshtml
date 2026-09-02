@@ -1,0 +1,170 @@
+﻿@model IEnumerable<ActivitySystem.ViewModel.View_Kaizens>
+
+@{
+    ViewData["Title"] = "Dashboard - Kaizen Activity System";
+    ViewData["Page"] = "Dashboard V1.8.202412031545";
+    Layout = "_Main_Layout";
+    //ViewBag.DashboardActive = "Active";
+}
+
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header ">
+                <h5 class="card-title">
+                    MyKaizen - มาย! ไคเซ็น
+                </h5>
+                <p class="card-category">Kaizen Activity Management System</p>
+            </div>
+            <center class="card-body">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="card card-stats">
+                            <div class="card-body ">
+                                <div class="row">
+                                    <div class="col-5 col-md-4">
+                                        <div class="icon-big text-center icon-warning">
+                                            <i class="nc-icon nc-globe text-warning"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-7 col-md-8">
+                                        <div class="numbers">
+                                            <p class="card-category">จำนวนเรื่องที่ส่ง</p>
+                                            <p class="card-title">@ViewBag.ShowCount<p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer ">
+                                <hr>
+                                <div class="stats">
+                                    <a  asp-controller="Login" asp-action="Dashboard"><i class="fa fa-refresh"></i></a>
+                                    @ViewBag.ShowDateNow
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="card card-stats">
+                            <div class="card-body ">
+                                <div class="row">
+                                    <div class="col-5 col-md-4">
+                                        <div class="icon-big text-center icon-warning">
+                                            <i class="nc-icon nc-money-coins text-danger"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-7 col-md-8">
+                                        <div class="numbers">
+                                            <p class="card-category">จำนวนเงินที่ลด</p>
+                                            <p class="card-title">฿ @ViewBag.ShowCR<p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer ">
+                                <hr>
+                                <div class="stats">
+                                    <a asp-controller="Login" asp-action="Dashboard"><i class="fa fa-refresh"></i></a>
+                                    @ViewBag.ShowDateNow
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="card card-stats">
+                            <div class="card-body ">
+                                <div class="row">
+                                    <div class="col-5 col-md-4">
+                                        <div class="icon-big text-center icon-warning">
+                                            <i class="nc-icon nc-trophy text-success"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-7 col-md-8">
+                                        <div class="numbers">
+                                            <p class="card-category">จำนวนเงินรางวัล</p>
+                                            <p class="card-title">฿ @ViewBag.ShowPrice<p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <hr>
+                                <div class="stats">
+                                    <a asp-controller="Login" asp-action="Dashboard"><i class="fa fa-refresh"></i></a>
+                                    @ViewBag.ShowDateNow
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @*<div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="card card-stats">
+                                <div class="card-body ">
+                                    <div class="row">
+                                        <div class="col-5 col-md-4">
+                                            <div class="icon-big text-center icon-warning">
+                                                <i class="nc-icon nc-favourite-28 text-primary"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-7 col-md-8">
+                                            <div class="numbers">
+                                                <p class="card-category">จำนวนไคเซ็นรอบที่แล้ว</p>
+                                                <p class="card-title">+45K<p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer ">
+                                    <hr>
+                                    <div class="stats">
+                                        <i class="fa fa-refresh"></i>
+                                        รอบก่อนหน้า
+                                    </div>
+                                </div>
+                            </div>
+                        </div>*@
+                    @*<div class="row">
+                            <div class="col-md-12">
+                                <div class="card ">
+                                    <div class="card-header ">
+                                        <h5 class="card-title">Users Behavior</h5>
+                                        <p class="card-category">24 Hours performance</p>
+                                    </div>
+                                    <div class="card-body ">
+                                        <canvas id=chartHours width="400" height="100"></canvas>
+                                    </div>
+                                    <div class="card-footer ">
+                                        <hr>
+                                        <div class="stats">
+                                            <i class="fa fa-history"></i> Updated 3 minutes ago
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>*@
+                    
+                </div>
+
+            <div class="row">
+                <div class="update ml-auto mr-auto">
+                    <center>
+                        <img src="~/img/Logo_KAIZEN_FY24.png" alt="MyKaizen" style="width: 50%; height: auto; max-width: 40%" ;>
+                    </center>
+                    <br />
+
+                </div>
+            </div>
+        </div>
+    </div>
+@* <img src="~/img/Banner_MyKAIZEN.png" alt="MyKaizen" width: 50%; height: auto; max-width: 50%; class="img-circle img-no-padding img-responsive"> *@
+@* <video autoplay muted style="width: 50%; height: auto; max-width: 50%;" controlslist="nodownload noplaybackrate noaudio">
+					        <source src="~/video/logo_kaizen.mp4" type="video/mp4" />
+				        </video> *@
+    @*<script type="text/jscript">
+            $( document ).ready(function() {
+            var c = document.getElementById("chartHours");
+            var ctx=c.getContext("2d");
+            ctx.beginPath();
+            ctx.arc(95,50,40,0,2*Math.PI);
+            ctx.stroke();
+
+            });
+        </script>*@

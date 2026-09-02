@@ -1,0 +1,327 @@
+﻿@model ActivitySystem.ViewModel.View_Kaizens
+
+@{
+    ViewData["Title"] = "Leader - Kaizen Activity System";
+    ViewData["Page"] = "Check Topic";
+    Layout = "_Main_Layout";
+}
+
+<div class="row col-md-12">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">
+                    ตรวจสอบเอกสาร / Kaizen Check by Leader
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="container">
+                    <form asp-action="Check" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input asp-for="IdEmp" class="form-control" hidden />
+                        <input asp-for="NameEmp" class="form-control" hidden />
+                        <input asp-for="DeptEmp" class="form-control" hidden />
+                        <input asp-for="JbtEmp" class="form-control" hidden />
+                        <input asp-for="IdLeader" class="form-control" hidden />
+                        <input asp-for="NameLeader" class="form-control" hidden />
+                        <input asp-for="DeptLeader" class="form-control" hidden />
+                        <input asp-for="JbtLeader" class="form-control" hidden />
+                        <input asp-for="IdManager" class="form-control" hidden />
+                        <input asp-for="NameManager" class="form-control" hidden />
+                        <input asp-for="DeptManager" class="form-control" hidden />
+                        <input asp-for="JbtManager" class="form-control" hidden />
+
+                        <input asp-for="KaizenNo" class="form-control" hidden />
+                        <input asp-for="DeptNo" class="form-control" hidden />
+                        <input asp-for="KaizenRef" class="form-control" hidden />
+
+                        <input asp-for="KzStatus" class="form-control" hidden />
+                        <input asp-for="ImpBefore" class="form-control" hidden />
+                        <input asp-for="ImpAfter" class="form-control" hidden />
+
+                        <input asp-for="ChkActType" class="form-control" hidden />
+
+                        <div class=" row form-group">
+                            <div class="col-md-3 pr-1">
+                                <label asp-for="Title" class="control-label">หัวข้อเรื่อง </br>(Topic):</label>
+                            </div>
+                            <div class="col-md-9 pr-0">
+                                <input asp-for="Title" class="form-control" disabled />
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-3 pr-0">
+                                <label asp-for="Date" class="control-label">วันที่เสนอแนะ </br>(Date):</label>
+                            </div>
+                            <div class="col-md-3 pr-0">
+                                <input type="text" asp-for="Date" class="form-control" disabled />
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-3 pr-0">
+                                <label asp-for="NoActType" class="control-label">ประเภทของกิจกรรม </br>(Kaizen Type):</label>
+                            </div>
+                            <div class="col-md-3 pr-0">
+                                <input asp-for="ChkActType" class="form-control" disabled />
+                            </div>
+                            <div class="col-md-3 pr-0">
+                                <label asp-for="ActDetail" class="control-label">อื่น ๆ โปรดระบุ </br>(Other):</label>
+                            </div>
+                            <div class="col-md-3 pr-0">
+                                <input asp-for="ActDetail" class="form-control" disabled />
+                            </div>
+                        </div>
+                        <div class="card-header">
+                            <h6 class="card-title">
+                                ก่อนปรับปรุง/ปัญหา (Before Improve/Present Problem):
+                            </h6>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-3 pr-0">
+                                <label asp-for="ImpBefore" class="control-label">รูปภาพก่อนการปรับปรุง </br>(Before Image)</label>
+                            </div>
+                            <div class="col-md-9 pr-0">
+                                <img src="@("~/ImagesUploaded/"+ Model.ImpBefore )" asp-append-version="true" width="100%" height="100%" />
+                            </div>
+                        </div>
+                        <p style="color: white">.</p>
+                        <div class="row form-group">
+                            <div class="col-md-3 pr-0">
+                                <label asp-for="Problem" class="control-label">ปัญหาที่พบ</br>(Problem):</label>
+                            </div>
+                            <div class="col-md-9 pr-0">
+                                <textarea rows="10" asp-for="Problem" class="form-control" disabled></textarea>
+                            </div>
+                        </div>
+                        <div class="card-header">
+                            <h6 class="card-title">
+                                หลังปรับปรุง/สิ่งที่คาดว่าจะเป็น (After Improve):
+                            </h6>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-3 pr-0">
+                                <label asp-for="ImpAfter" class="control-label">รูปภาพหลังการปรับปรุง </br>(After Image)</label>
+                            </div>
+                            <div class="col-md-9 pr-0">
+                                <img src="@("~/ImagesUploaded/"+ Model.ImpAfter )" asp-append-version="true" width="100%" height="100%" /><hr />
+                            </div>
+                        </div>
+                        <p style="color: white">.</p>
+                        <div class="row form-group">
+                            <div class="col-md-3 pr-0">
+                                <label asp-for="Result" class="control-label">ผลที่ได้ </br>(Result):</label>
+                            </div>
+                            <div class="col-md-9 pr-0">
+                                <textarea rows="10" asp-for="Result" class="form-control" disabled></textarea>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row form-group">
+                            <div class="col-md-3 pr-0">
+                                <label asp-for="CostSaving" class="control-label">จำนวนเงินที่สามารถลดได้ </br>(Cost Saving):</label>
+                            </div>
+                            <div class="col-md-3 pr-0">
+                                <input asp-for="CostSaving" class="form-control" disabled />
+                            </div>
+                            <div class="col-md-3 pr-0">
+                                <label class="control-label">บาท</br>(Baht)</label>
+                            </div>
+                        </div>
+                        <div class="card-header">
+                            <h6 class="card-title">
+                                นำเสนอผลงานโดย (Presented by):
+                            </h6>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-3 pr-0">
+                                <label asp-for="IdEmp" class="control-label">รหัสพนักงาน </br>(Employee Code):</label>
+                            </div>
+                            <div class="col-md-3 pr-0">
+
+                                @Html.DisplayFor(model => model.IdEmp)
+                            </div>
+                            <div class="col-md-2 pr-0">
+                                <label asp-for="NameEmp" class="control-label">ชื่อนามสกุล </br>(Name Lastname):</label>
+                            </div>
+                            <div class="col-md-4 pr-0">
+                                @Html.DisplayFor(model => model.NameEmp)
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-3 pr-0">
+
+                                <label asp-for="JbtEmp" class="control-label">ตำแหน่งงาน</br>(Position):</label>
+                            </div>
+                            <div class="col-md-3 pr-0">
+                                @Html.DisplayFor(model => model.JbtEmp)
+                            </div>
+                            <div class="col-md-2 pr-0">
+                                <label asp-for="DeptEmp" class="control-label">แผนก </br>(Department):</label>
+                            </div>
+                            <div class="col-md-4 pr-0">
+                                @Html.DisplayFor(model => model.DeptEmp)
+                            </div>
+                        </div>
+                        <div class="card-header">
+                            <h6 class="card-title">
+                                ตรวจสอบ / หัวหน้างาน (Checked /  Foreman or Engineer):
+                            </h6>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-3 pr-0">
+                                <label asp-for="ChkImproved" class="control-label">ตรวจสอบการปรับปรุง </br>(Checked By Foreman or Engineer):</label>
+                            </div>
+                            <div class="col-md-3 pr-0">
+                                @Html.DropDownListFor(model => model.ChkImproved, (SelectList)ViewBag.ImprovedList, "-- Select Improved List --", htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.ChkImproved, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-6 pr-0">
+                                <label asp-for="ChkImproved" class="control-label">***ถ้าปรับปรุงเสร็จแล้ว (Completed) โปรดระบุการกำหนดมาตรฐาน ถ้าข้อเสนอแนะ, ไม่ได้ปรับปรุงเอง (Suggestion, Don't Improve) โปรดระบุฝ่ายที่รับข้อเสนอแนะในการปรับปรุง</label>
+                            </div>
+                        </div>
+                        <div class="row form-group" id="ShowChkStandard">
+                            <div class="col-md-3 pr-0">
+                                <label asp-for="ChkStandard" class="control-label">การกำหนดมาตรฐาน </br>(Standardization):</label>
+                            </div>
+                            <div class="col-md-3 pr-0">
+                                @Html.DropDownListFor(model => model.ChkStandard, (SelectList)ViewBag.YesNoList, "-- Select Std. List --", htmlAttributes: new { @class = "form-control", @id = "ChkStandardDropdown", onchange = "updateInputField()" })
+                                @Html.ValidationMessageFor(model => model.ChkStandard, "", new { @class = "text-danger" })
+                            </div>
+
+                                <div class="col-md-3 pr-0">
+                                    <label asp-for="ChkStandardRef" class="control-label">ถ้ามีระบุหมายเลขเอกสาร/โปรแกรม</br>(Doc No./Program):</label>
+                                </div>
+                                <div class="col-md-3 pr-0">
+                                    <input asp-for="ChkStandardRef" class="form-control" id="ChkStandardRef" />
+                                </div>
+
+                        </div>
+                        <div class="row form-group" id="ShowChkDept">
+                            <div class="col-md-3 pr-0">
+                                <label asp-for="ChkDept" class="control-label">ฝ่ายที่รับข้อเสนอแนะในการปรับปรุง </br>(Improvement by dept.):</label>
+                            </div>
+                            <div class="col-md-3 pr-0">
+                                @Html.DropDownListFor(model => model.ChkDept, (SelectList)ViewBag.DeptList, "-- Select Dept. List --", htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.ChkDept, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-3 pr-0">
+                                <label asp-for="ChkDeptRef" class="control-label">อื่น ๆ โปรดระบุ </br>(Other):</label>
+                            </div>
+                            <div class="col-md-3 pr-0">
+                                <input asp-for="ChkDeptRef" class="form-control"  />
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-3 pr-0">
+                                <label asp-for="NoLevel" class="control-label">ประเภทไคเซ็น</br>(Kaizen Type):</label>
+                            </div>
+                            <div class="col-md-5 pr-0">
+                                @Html.DropDownListFor(model => model.NoLevel, (SelectList)ViewBag.LevelKaizenList, "-- Select Level List --", htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.NoLevel, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-3 pr-0">
+                                <label asp-for="NoType" class="control-label">ประเมินผลประเภทการปรับปรุง</br>(Evaluate type of improvement):</label>
+                            </div>
+                            <div class="col-md-5 pr-0">
+                                @Html.DropDownListFor(model => model.NoType, (SelectList)ViewBag.EvaluateImpList, "-- Select Evaluate Improvement List --", htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.NoType, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-4 pr-0">
+                                <label asp-for="ChkDept" class="control-label">***ถ้าปรับปรุงด้านสิ่งแวดล้อม โปรดระบุประเภทการปรับปรุง Reduce / Reuse / Recycle</label>
+                            </div>
+                        </div>
+                        <div class="row form-group" id="ShowChkEnv">
+                            <div class="col-md-3 pr-0">
+                                <label asp-for="NoEnv" class="control-label">ประเภทการปรับปรุงด้านสิ่งแวดล้อม </br>(Environmental improvement type ):</label>
+                            </div>
+                            <div class="col-md-4 pr-0">
+                                @Html.DropDownListFor(model => model.NoEnv, (SelectList)ViewBag.EnvList, "-- Select Evaluate Environmental List --", htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.NoEnv, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-3 pr-0">
+                                <label asp-for="ChkCost" class="control-label">จำนวนเงินที่สามารถลดได้จริง หลังประเมินแล้ว</br>(Cost Saving):</label>
+                            </div>
+                            <div class="col-md-3 pr-0">
+                                <input asp-for="ChkCost" class="form-control" type="number" value="0.00" />
+                            </div>
+                            <div class="col-md-3 pr-0">
+                                <label class="control-label">บาท</br>(Baht)</label>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-12 pr-0">
+                                <div class="row update ml-auto mr-auto">
+                                    <button type="submit" value="Update" class="btn btn-primary btn-round">
+                                        <div style="color: white" text-align: center;>Checked</div>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script type="text/javascript">
+        $(".custom-file-input-before").on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label-before").addClass("selected").html(fileName);
+        });
+        $(".custom-file-input-after").on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label-after").addClass("selected").html(fileName);
+        });
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            $('#ChkImproved').change(function () {
+                var value = $(this).val();
+                if (value == '1') {
+                    $('#ShowChkStandard').show();
+                    $('#ShowChkDept').hide();
+                } else {
+                    $('#ShowChkStandard').hide();
+                    $('#ShowChkDept').show();
+                }
+            });
+        });
+    </script>
+ 
+
+    <script>
+        function updateInputField() {
+            var dropdown = document.getElementById("ChkStandardDropdown");
+            var selectedValue = dropdown.value;
+
+            // Assuming "No" has a value of "No"
+            if (selectedValue == "1") {
+                document.getElementById("ChkStandardRef").value = " "; // Set your desired value
+            } else {
+                document.getElementById("ChkStandardRef").value = "-"; // Set your desired value
+            }
+        }
+
+    </script>
+
+    <script type="text/javascript">
+        $(function () {
+            $('#NoType').change(function () {
+                var value = $(this).val();
+                if (value == '4') {
+                    $('#ShowChkEnv').show();
+                } else {
+                    $('#ShowChkEnv').hide();
+                }
+            });
+        });
+    </script>
+
+}

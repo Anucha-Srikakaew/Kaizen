@@ -1,0 +1,183 @@
+﻿@model ActivitySystem.ViewModel.View_ApprovalFlow
+@using System.Globalization;
+@{
+    ViewData["Title"] = "Login - Activity System";
+    Layout = "";
+}
+
+@*<script type="text/javascript">
+    if ('@ViewBag.ErrorMessage' != "")
+    alert('@ViewBag.ErrorMessage');
+</script>*@
+
+<script>
+    var showAlert = "@ViewBag.showAlert";
+    var alertMessage = "@ViewBag.alertMessage";
+    if (showAlert === "True") {
+        alert(alertMessage);
+    }
+    //if (showAlert === "True") {
+    //    //alert("Something wrong.");
+    //} else {
+    //    alert(alertMessage);
+    //}
+</script>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login - Activity System</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="~/login/images/icons/favicon.ico" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/login/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/login/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/login/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/login/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/login/vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/login/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/login/vendor/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/login/css/util.css">
+    <link rel="stylesheet" type="text/css" href="~/login/css/main.css">
+    <!--===============================================================================================-->
+</head>
+<body style="background-color: #666666;">
+
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100">
+                <form class="login100-form validate-form" asp-action="Login" asp-controller="Login" method="post">
+                    <center>
+                        <img src="~/img/Logo_KAIZEN_FY24.png" alt="MyKaizen" style="width: 80%; height: auto; max-width: 40%" ;>
+                    </center>
+                     <br />
+                    <span class="login100-form-title p-b-43">
+                        Login to continue
+                    </span>
+                    <div class="wrap-input100 validate-input" data-validate="Valid employee id 5 digits is required">
+                        <input class="input100" type="text" name="PRS_NO" id="PRS_NO">
+                        <span class="focus-input100"></span>
+                        <span class="label-input100">รหัสพนักงาน Employee ID</span>
+                    </div>
+
+                    <div class="wrap-input100 validate-input" data-validate="Your Birthday is required">
+                        <input class="input100" type="date" name="EMP_BIRTH" id="EMP_BIRTH">
+                        <span class="focus-input100"></span>
+                        <span class="label-input100">วันเกิด เช่น 31/12/1999 (คศ.) Your Birthday</span>
+                    </div>
+
+                    <div class="container-login100-form-btn">
+                        <button class="login100-form-btn">
+                            เข้าสู่ระบบ Login
+                        </button>
+                    </div>
+                    <br />
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                        ตัวอย่างการใช้งานโปรแกรม MyKaizen
+                    </button>
+					<br /><br />
+
+                    <button class="btn btn-success">
+
+                        <a href="https://www.canva.com/design/DAGVBLBnSTk/qe1Aw1B_CwJPKi6RvC81Qg/edit?utm_content=DAGVBLBnSTk&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank" style="color:white">
+                            ประกาศรางวัล kAIZEN ประจำเดือน
+						</a>
+					</button>
+
+                    <button class="btn btn-info">
+
+                        <a href="http://10.112.16.26:3000/d/fa956627-cf61-461b-afea-29dba76648ca/my-kaizen-dashboard?orgId=1&from=now-24h&to=now&theme=light&refresh=5s" target="_blank" style="color:white">
+                            Dashboard
+                        </a>
+                    </button>
+             
+
+                </form>
+
+               @*<div class="login100-more" style="background-image: url('../login/images/bg-05.png');">
+
+                </div> *@
+
+            
+                        <video class="login100-more" controls="controls" autoplay muted loop>
+							<source src="~/login/video/kaizen_present.mp4" type="video/mp4" />
+						</video>
+              
+               
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">    
+                    <h4 class="modal-title" id="myModalLabel">ตัวอย่างการใช้งานโปรแกรม MyKaizen</h4>
+                    @*<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>*@
+                </div>
+                <div class="modal-body">
+                    <video controls id="video1" style="width: 100%; height: auto; margin:0 auto; frameborder:0;">
+                        <source src="Video\TrainingMyKaizen.mp4" type="video/mp4">
+                        <source src="Video\TrainingMyKaizen.mp4" type="video/ogg">
+                        </video>
+                    </video>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--===============================================================================================-->
+    <script src="~/login/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/login/vendor/animsition/js/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/login/vendor/bootstrap/js/popper.js"></script>
+    <script src="~/login/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/login/vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/login/vendor/daterangepicker/moment.min.js"></script>
+    <script src="~/login/vendor/daterangepicker/daterangepicker.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/login/vendor/countdowntime/countdowntime.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/login/js/main.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    @*<script type="text/jscript">
+            $(document).ready(function () {
+                var x = $("#PRS_NO").val();
+                var y = $("#EMP_BIRTH").val();
+                $("#submit").on("click", function () {
+                    if (error condition ) {
+                    alert('Employee ID and Your Birthday is null');
+                }
+                        else {
+                    var div = $("#popupdiv").text();
+                    alert(div)
+                }
+
+            });
+                });
+        </script>*@
+
+</body>
+</html>

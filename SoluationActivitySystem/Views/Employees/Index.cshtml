@@ -1,0 +1,113 @@
+﻿@model IEnumerable<ActivitySystem.Models.Employee>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.EMP_ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EMP_BIRTH)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EMP_E_NAME)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DEPT_ENGDESC)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JBT_ENGDESC)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WBP_EMAIL)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Signature)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmpStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LeaderStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LeaderDept)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ManagerStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ManagerDept)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SGATeamStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SGABoaedStatus)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EMP_ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EMP_BIRTH)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EMP_E_NAME)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DEPT_ENGDESC)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JBT_ENGDESC)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WBP_EMAIL)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Signature)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmpStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LeaderStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LeaderDept)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ManagerStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ManagerDept)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SGATeamStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SGABoaedStatus)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.EmpNo">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.EmpNo">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.EmpNo">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

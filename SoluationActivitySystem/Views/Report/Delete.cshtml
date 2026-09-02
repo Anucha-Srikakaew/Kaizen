@@ -1,0 +1,369 @@
+﻿@model ActivitySystem.ViewModel.View_Kaizens
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>View_Kaizens</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DeptNo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DeptNo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.KaizenRef)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.KaizenRef)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NoActType)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NoActType)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ActDetail)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ActDetail)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ImpBefore)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ImpBefore)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Problem)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Problem)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ImpAfter)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ImpAfter)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Result)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Result)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CostSaving)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CostSaving)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.KzStatus)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.KzStatus)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ActTypeTh)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ActTypeTh)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ActTypeEng)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ActTypeEng)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LibNo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LibNo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ChkActType)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ChkActType)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DateEmp)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DateEmp)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IdEmp)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IdEmp)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NameEmp)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NameEmp)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DeptEmp)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DeptEmp)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.JbtEmp)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.JbtEmp)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DateLeader)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DateLeader)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IdLeader)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IdLeader)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NameLeader)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NameLeader)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DeptLeader)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DeptLeader)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.JbtLeader)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.JbtLeader)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ChkImproved)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ChkImproved)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ChkStandard)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ChkStandard)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ChkStandardRef)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ChkStandardRef)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ChkDept)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ChkDept)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ChkDeptRef)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ChkDeptRef)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NoLevel)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NoLevel)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ChkLevel)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ChkLevel)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NoType)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NoType)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ChkType)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ChkType)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ChkCost)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ChkCost)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NoEnv)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NoEnv)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ChkEnv)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ChkEnv)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RemarkLeader)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RemarkLeader)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DateManager)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DateManager)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IdManager)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IdManager)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NameManager)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NameManager)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DeptManager)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DeptManager)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.JbtManager)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.JbtManager)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CntKaizen)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CntKaizen)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CntCR)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CntCR)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CntVote)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CntVote)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RemarkManager)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RemarkManager)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DateSGABoard)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DateSGABoard)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IdSGABoard)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IdSGABoard)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NameSGABoard)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NameSGABoard)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DeptSGABoard)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DeptSGABoard)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.JbtSGABoard)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.JbtSGABoard)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AwardNo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AwardNo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Award)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Award)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RemarkSGABoard)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RemarkSGABoard)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LibraryStatus)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LibraryStatus)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="KaizenNo" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

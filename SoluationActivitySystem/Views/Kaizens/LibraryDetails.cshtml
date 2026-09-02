@@ -1,0 +1,407 @@
+﻿@model ActivitySystem.ViewModel.View_Kaizens
+
+@{
+    ViewData["Title"] = "Library Detail Topic - Kaizen Activity System";
+    ViewData["Page"] = "Library Detail";
+    Layout = "_Main_Layout";
+}
+
+
+<div class="row col-md-12">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header"> 
+                <h5 class="card-title">
+                    รายละเอียดเอกสาร / Detail Kaizen
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="container dl-horizontal">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="row form-group">
+                        <div class="col-md-3 pr-1">
+                            <label asp-for="Title" class="control-label">หมายเลขเอกสาร </br>(Kaizen No.):</label>
+                        </div>
+                        <div class="col-md-9 pr-0">
+                            @Html.DisplayFor(model => model.KaizenRef)
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-3 pr-1">
+                            <label asp-for="Title" class="control-label">หัวข้อเรื่อง </br>(Topic):</label>
+                        </div>
+                        <div class="col-md-9 pr-0">
+                            @Html.DisplayFor(model => model.Title)
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-3 pr-0">
+                            <label asp-for="Date" class="control-label">วันที่เสนอแนะ </br>(Date):</label>
+                        </div>
+                        <div class="col-md-3 pr-0">
+                            @Html.DisplayFor(model => model.Date)
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-3 pr-0">
+                            <label asp-for="NoActType" class="control-label">ประเภทของกิจกรรม </br>(Kaizen Type):</label>
+                        </div>
+                        <div class="col-md-3 pr-0">
+
+                            @Html.DisplayFor(model => model.ActTypeTh) /  @Html.DisplayFor(model => model.ActTypeEng)
+                        </div>
+                        <div class="col-md-2 pr-0">
+                            <label asp-for="ActDetail" class="control-label">อื่น ๆ โปรดระบุ </br>(Other):</label>
+                        </div>
+                        <div class="col-md-4 pr-0">
+                            @Html.DisplayFor(model => model.ActDetail)
+                        </div>
+                    </div>
+                    <div class="card-header">
+                        <h6 class="card-title">
+                            ก่อนปรับปรุง/ปัญหา (Before Improve/Present Problem):
+                        </h6>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-3 pr-0">
+                            <label asp-for="ImpBefore" class="control-label">รูปภาพก่อนการปรับปรุง </br>(Before Image):</label>
+                        </div>
+                        <div class="col-md-9 pr-0">
+                            @*@Html.DisplayFor(model => model.ImpBefore)*@
+                            <img src="@("~/ImagesUploaded/"+ Model.ImpBefore )" asp-append-version="true" width="100%" height="100%" />
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-3 pr-0">
+                            <label asp-for="Problem" class="control-label">ปัญหาที่พบ </br>(Problem):</label>
+                        </div>
+                        <div class="col-md-9 pr-0">
+                            @Html.DisplayFor(model => model.Problem)
+                        </div>
+                    </div>
+                    <div class="card-header">
+                        <h6 class="card-title">
+                            หลังปรับปรุง/สิ่งที่คาดว่าจะเป็น (After Improve):
+                        </h6>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-3 pr-0">
+                            <label asp-for="ImpAfter" class="control-label">รูปภาพหลังการปรับปรุง </br>(After Image):</label>
+                        </div>
+                        <div class="col-md-9 pr-0">
+                            <img src="@("~/ImagesUploaded/"+ Model.ImpAfter )" asp-append-version="true" width="100%" height="100%" />
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-3 pr-0">
+                            <label asp-for="Result" class="control-label">ผลที่ได้ </br>(Result):</label>
+                        </div>
+                        <div class="col-md-9 pr-0">
+                            @Html.DisplayFor(model => model.Result)
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row form-group">
+                        <div class="col-md-3 pr-0">
+                            <label asp-for="CostSaving" class="control-label">จำนวนเงินที่สามารถลดได้ </br>(Cost Saving):</label>
+                        </div>
+                        <div class="col-md-3 pr-0">
+                            @Html.DisplayFor(model => model.CostSaving)
+                        </div>
+                        <div class="col-md-1 pr-0">
+                            <label class="control-label">บาท</br>(Baht)</label>
+                        </div>
+                        <div class="col-md-2 pr-0">
+                            <label asp-for="KzStatus" class="control-label">สถานะเอกสาร </br>(Status):</label>
+                        </div>
+                        <div class="col-md-3 pr-0">
+                            @Html.DisplayFor(model => model.KzStatus)
+                        </div>
+                    </div>
+                    <div class="card-header">
+                        <h6 class="card-title">
+                            นำเสนอผลงานโดย (Presented by):
+                        </h6>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-3 pr-0">
+                            <label asp-for="IdEmp" class="control-label">รหัสพนักงาน </br>(Employee Code):</label>
+                        </div>
+                        <div class="col-md-3 pr-0">
+
+                            @Html.DisplayFor(model => model.IdEmp)
+                        </div>
+                        <div class="col-md-2 pr-0">
+                            <label asp-for="NameEmp" class="control-label">ชื่อนามสกุล </br>(Name Lastname):</label>
+                        </div>
+                        <div class="col-md-4 pr-0">
+                            @Html.DisplayFor(model => model.NameEmp)
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-3 pr-0">
+
+                            <label asp-for="JbtEmp" class="control-label">ตำแหน่งงาน</br>(Position):</label>
+                        </div>
+                        <div class="col-md-3 pr-0">
+                            @Html.DisplayFor(model => model.JbtEmp)
+                        </div>
+                        <div class="col-md-2 pr-0">
+                            <label asp-for="DeptEmp" class="control-label">แผนก </br>(Department):</label>
+                        </div>
+                        <div class="col-md-4 pr-0">
+                            @Html.DisplayFor(model => model.DeptEmp)
+                        </div>
+                    </div>
+                    <div class="card-header">
+                        <h6 class="card-title">
+                            ตรวจสอบ / หัวหน้างาน (Checked /  Foreman or Engineer):
+                        </h6>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-3 pr-0">
+                            <label asp-for="ChkImproved" class="control-label">ตรวจสอบการปรับปรุง </br>(Checked By Foreman or Engineer):</label>
+                        </div>
+                        <div class="col-md-3 pr-0">
+                            @Html.DisplayFor(model => model.ChkImproved)
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-3 pr-0">
+                            <label asp-for="ChkStandard" class="control-label">การกำหนดมาตรฐาน </br>(Standardization):</label>
+                        </div>
+                        <div class="col-md-3 pr-0">
+                            @Html.DisplayFor(model => model.ChkStandard)
+                        </div>
+                        <div class="col-md-3 pr-0">
+                            <label asp-for="ChkStandardRef" class="control-label">ถ้ามีระบุหมายเลขเอกสาร/โปรแกรม </br>(Doc No./Program):</label>
+                        </div>
+                        <div class="col-md-3 pr-0">
+                            @Html.DisplayFor(model => model.ChkStandardRef)
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-3 pr-0">
+                            <label asp-for="ChkDept" class="control-label">ฝ่ายที่รับข้อเสนอแนะในการปรับปรุง </br>(Dept. suggestions for improvement.):</label>
+                        </div>
+                        <div class="col-md-3 pr-0">
+                            @Html.DisplayFor(model => model.ChkDept)
+                        </div>
+                        <div class="col-md-3 pr-0">
+                            <label asp-for="ChkDeptRef" class="control-label">อื่น ๆ โปรดระบุ </br>(Other):</label>
+                        </div>
+                        <div class="col-md-3 pr-0">
+                            @Html.DisplayFor(model => model.ChkDeptRef)
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-3 pr-0">
+                            <label asp-for="NoLevel" class="control-label">ประเภทไคเซ็น</br>(Kaizen Type):</label>
+                        </div>
+                        <div class="col-md-5 pr-0">
+                            @Html.DisplayFor(model => model.ChkLevel)
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-3 pr-0">
+                            <label asp-for="NoType" class="control-label">ประเมินผลประเภทการปรับปรุง</br>(Evaluate type of improvement):</label>
+                        </div>
+                        <div class="col-md-5 pr-0">
+                            @Html.DisplayFor(model => model.ChkType)
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-3 pr-0">
+                            <label asp-for="NoEnv" class="control-label">ประเภทการปรับปรุงด้านสิ่งแวดล้อม </br>(Environmental improvement type ):</label>
+                        </div>
+                        <div class="col-md-5 pr-0">
+                            @Html.DisplayFor(model => model.ChkEnv)
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-3 pr-0">
+                            <label asp-for="ChkCost" class="control-label">จำนวนเงินที่สามารถลดได้จริง </br>(Cost Saving):</label>
+                        </div>
+                        <div class="col-md-3 pr-0">
+                            @Html.DisplayFor(model => model.ChkCost)
+                        </div>
+                        <div class="col-md-1 pr-0">
+                            <label class="control-label">บาท</br>(Baht)</label>
+                        </div>
+                    </div>
+                    <div class="card-header">
+                        <h6 class="card-title">
+                            ผู้ตรวจสอบผลงาน (Checked by Leader):
+                        </h6>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-3 pr-0">
+                            <label asp-for="IdLeader" class="control-label">รหัสพนักงาน </br>(Employee Code):</label>
+                        </div>
+                        <div class="col-md-3 pr-0">
+
+                            @Html.DisplayFor(model => model.IdLeader)
+                        </div>
+                        <div class="col-md-2 pr-0">
+                            <label asp-for="NameLeader" class="control-label">ชื่อนามสกุล </br>(Name Lastname):</label>
+                        </div>
+                        <div class="col-md-4 pr-0">
+                            @Html.DisplayFor(model => model.NameLeader)
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-3 pr-0">
+
+                            <label asp-for="JbtLeader" class="control-label">ตำแหน่งงาน</br>(Position):</label>
+                        </div>
+                        <div class="col-md-3 pr-0">
+                            @Html.DisplayFor(model => model.JbtLeader)
+                        </div>
+                        <div class="col-md-2 pr-0">
+                            <label asp-for="DeptLeader" class="control-label">แผนก </br>(Department):</label>
+                        </div>
+                        <div class="col-md-4 pr-0">
+                            @Html.DisplayFor(model => model.DeptLeader)
+                        </div>
+                    </div>
+                    <div class="card-header">
+                        <h6 class="card-title">
+                            อนุมัติ  / ผู้จัดการ (Approval /  Ast. or Manager):
+                        </h6>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-3 pr-0">
+                            <label asp-for="CntKaizen" class="control-label">จัดอยู่ในประเภท Kaizen  </br>(Count / No Count):</label>
+                        </div>
+                        <div class="col-md-1 pr-0">
+                            @Html.DisplayFor(model => model.CntKaizen)
+                        </div>
+                        <div class="col-md-3 pr-0">
+                            <label asp-for="CntCR" class="control-label">กรณีKaizenที่มีจำนวนเงินที่สามารถลดค่าใช้จ่ายได้ (CR / No CR):</label>
+                        </div>
+                        <div class="col-md-1 pr-0">
+                            @Html.DisplayFor(model => model.CntCR)
+                        </div>
+                        <div class="col-md-3 pr-0">
+                            <label asp-for="CntVote" class="control-label">ส่งผลงานโหวตรางวัลประจำเดือน</br> (Vote / No Vote):</label>
+                        </div>
+                        <div class="col-md-1 pr-0">
+                            @Html.DisplayFor(model => model.CntVote)
+                        </div>
+                    </div>
+                    <div class="card-header">
+                        <h6 class="card-title">
+                            ผู้อนุมัติผลงาน (Approval by Manager):
+                        </h6>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-3 pr-0">
+                            <label asp-for="IdManager" class="control-label">รหัสพนักงาน </br>(Employee Code):</label>
+                        </div>
+                        <div class="col-md-3 pr-0">
+
+                            @Html.DisplayFor(model => model.IdManager)
+                        </div>
+                        <div class="col-md-2 pr-0">
+                            <label asp-for="NameManager" class="control-label">ชื่อนามสกุล </br>(Name Lastname):</label>
+                        </div>
+                        <div class="col-md-4 pr-0">
+                            @Html.DisplayFor(model => model.NameManager)
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-3 pr-0">
+
+                            <label asp-for="JbtManager" class="control-label">ตำแหน่งงาน</br>(Position):</label>
+                        </div>
+                        <div class="col-md-3 pr-0">
+                            @Html.DisplayFor(model => model.JbtManager)
+                        </div>
+                        <div class="col-md-2 pr-0">
+                            <label asp-for="DeptManager" class="control-label">แผนก </br>(Department):</label>
+                        </div>
+                        <div class="col-md-4 pr-0">
+                            @Html.DisplayFor(model => model.DeptManager)
+                        </div>
+                    </div>
+                    <div class="card-header">
+                        <h6 class="card-title">
+                            การตัดสินรางวัล  / ผู้บริหาร SGA Borad (Award /  SGA Borad):
+                        </h6>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-3 pr-0">
+                            <label asp-for="Award" class="control-label">รางวัลที่ได้</br>(Award):</label>
+                        </div>
+                        <div class="col-md-3 pr-0">
+                            @Html.DisplayFor(model => model.Award)
+                        </div>
+                        <div class="col-md-3 pr-0">
+                            <label asp-for="Price" class="control-label">จำนวนเงินผลรางวัล </br>(Award Price):</label>
+                        </div>
+                        <div class="col-md-2 pr-0">
+                            @Html.DisplayFor(model => model.Price)
+                        </div>
+                        <div class="col-md-1 pr-0">
+                            <label class="control-label">บาท</br>(Baht)</label>
+                        </div>
+                    </div>
+                    <div class="card-header">
+                        <h6 class="card-title">
+                            ผู้ตัดสินรางวัลผลงาน (Award by SGA Board):
+                        </h6>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-3 pr-0">
+                            <label asp-for="IdSGABoard" class="control-label">รหัสพนักงาน </br>(Employee Code):</label>
+                        </div>
+                        <div class="col-md-3 pr-0">
+
+                            @Html.DisplayFor(model => model.IdSGABoard)
+                        </div>
+                        <div class="col-md-2 pr-0">
+                            <label asp-for="NameSGABoard" class="control-label">ชื่อนามสกุล </br>(Name Lastname):</label>
+                        </div>
+                        <div class="col-md-4 pr-0">
+                            @Html.DisplayFor(model => model.NameSGABoard)
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-3 pr-0">
+
+                            <label asp-for="JbtSGABoard" class="control-label">ตำแหน่งงาน</br>(Position):</label>
+                        </div>
+                        <div class="col-md-3 pr-0">
+                            @Html.DisplayFor(model => model.JbtSGABoard)
+                        </div>
+                        <div class="col-md-2 pr-0">
+                            <label asp-for="DeptSGABoard" class="control-label">แผนก </br>(Department):</label>
+                        </div>
+                        <div class="col-md-4 pr-0">
+                            @Html.DisplayFor(model => model.DeptSGABoard)
+                        </div>
+                    </div>
+                    @*<form asp-action="SendApproval" asp-route-id="@Model.KaizenNo">
+            <input type="hidden" asp-for="KaizenNo" />
+            @if (Model.KzStatus == "NewIdea" && Model.IdEmp == Convert.ToInt32(ViewBag.Id)) //See Button like Emp ID
+            {
+                <input type="submit" value="Send To Approval" class="btn btn-success" />
+            }
+        </form>*@
+                </div>
+
+            </div>
+            @*<div class="card-footer ">
+                      <div class="stats">
+                          <i class="fa fa-history"></i>
+                          <a asp-action="Index">Back to MyKaizen</a>
+                      </div>
+            </div>*@
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

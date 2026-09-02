@@ -1,0 +1,382 @@
+﻿@model ActivitySystem.Models.Kaizen
+
+@{
+    ViewData["Title"] = "Edit Topic - Kaizen Activity System";
+    ViewData["Page"] = "Edit Topic";
+    Layout = "_Main_Layout";
+}
+
+<div class="row col-md-12">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">
+                    แก้ไขเอกสาร / Update Kaizen
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="container">
+                    <form asp-action="Edit" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input asp-for="KaizenNo" class="form-control" hidden />
+                        <input asp-for="DeptNo" class="form-control" hidden />
+                        <input asp-for="KaizenRef" class="form-control"  hidden/>
+                        <input asp-for="KzStatus" class="form-control" hidden />
+                        <input asp-for="ImpBefore" class="form-control"  hidden/>
+                        <input asp-for="ImpAfter" class="form-control"  hidden/>
+                        <div class="row form-group">
+                        <div class="col-md-3 pr-1">
+                                <label asp-for="Title" class="control-label">หมายเลขเอกสาร </br>(Kaizen No.):</label>
+                            </div>
+                            <div class="col-md-9 pr-0">
+                                @Html.DisplayFor(model => model.KaizenRef)
+                            </div>
+                        </div>
+
+                        <div class=" row form-group">
+                            <div class="col-md-3 pr-1">
+                                <label asp-for="Title" class="control-label">หัวข้อเรื่อง </br>(Topic):</label>
+                            </div>
+                            <div class="col-md-9 pr-0">
+                                <input asp-for="Title" class="form-control" />
+                                <span asp-validation-for="Title" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-3 pr-0">
+                                <label asp-for="Date" class="control-label">วันที่เสนอแนะ </br>(Date):</label>
+                            </div>
+                            <div class="col-md-3 pr-0">
+                                <input type="text" asp-for="Date" class="form-control" disabled/>
+                                @*<input type="date" asp-for="Date" class="form-control" value="Kaizen.Date" /></input>*@
+                                <span asp-validation-for="Date" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-3 pr-0">
+                                <label asp-for="NoActType" class="control-label">ประเภทของกิจกรรม </br>(Kaizen Type):</label>
+                            </div>
+                            <div class="col-md-3 pr-0">
+                                @Html.DropDownListFor(model => model.NoActType, (SelectList)ViewBag.ActType, "-- Select Kaizen Type --", htmlAttributes: new { @id = "NoActType", @class = "form-control", onchange = "clickMe()" })
+                                @Html.ValidationMessageFor(model => model.NoActType, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="row form-group col-md-6 pr-0" id="ShowActContent">
+
+                                <div class="col-md-4 pr-0">
+                                    <label asp-for="ActDetail" class="control-label">อื่น ๆ โปรดระบุ </br>(Other):</label>
+                                </div>
+                                <div class="col-md-8 pr-0">
+                                    <input asp-for="ActDetail" class="form-control" />
+                              @*       <span asp-validation-for="ActDetail" class="text-danger"></span> *@
+                                </div>
+                            </div>
+                        </div>
+
+                       
+
+                        <div class="card-header">
+                            <h6 class="card-title">
+                                ก่อนปรับปรุง/ปัญหา (Before Improve/Present Problem):
+                            </h6>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-3 pr-0">
+                                <label asp-for="ImageBefore" class="control-label">รูปภาพก่อนการปรับปรุง </br>(Before Image)</label>
+                            </div>
+                            <div class="col-md-9 pr-0">
+                                <img src="@("~/ImagesUploaded/"+ Model.ImpBefore )" asp-append-version="true" width="100%" height="100%" />
+                            </div>
+                        </div>
+
+
+                        <div class="row form-group">
+                            <div class="col-md-3 pr-0">
+                                <label asp-for="ImageBefore" class="control-label">แก้ไขรูปภาพก่อนการปรับปรุง (Edit Before Image)</label>
+                            </div>
+
+                            <div class="col-md-4 pr-0">
+
+                                <!-- Hidden file input for the captured image -->
+                                <input asp-for="ImageBefore" class="custom-file-input-before" id="customFile" accept="image/jpeg" />
+                                <label class="custom-file-label-before" for="customFile" id="fileNameLabel">
+
+                                    <button type="button" class="btn cur-p btn-outline-success"><i class="fa fa-folder-open"></i> คลิกเลือกไฟล์รูปภาพเท่านั้น  </button>
+
+                                </label>
+                            </div>
+                            <div class="col-md-5 pr-0">
+                                <button onclick="myFunctionBefore()" type="button" class="btn cur-p btn-outline-primary"><i class="fa fa-camera-retro"></i> เปิด/ปิดกล้องหลังถ่ายรูป </button>
+                            </div>
+
+                            <div class="col-md-3 pr-0">
+                            </div>
+
+                            <div class="col-md-9 pr-0">
+
+
+                                <div id="myDIVBefore" style="display: none;">
+                                    <!-- Video element for camera preview -->
+                                    <video id="video" width="320" height="240" autoplay></video>
+
+                                    <!-- Canvas to draw the captured image (hidden by default) -->
+                                    <canvas id="canvas" width="320" height="240" style="display: none;"></canvas>
+                                    <br />
+                                    <!-- Button to capture photo from video stream -->
+                                    <button type="button" id="captureBtn" class="btn btn-warning"><i class="fa fa-camera"></i> ถ่ายรูป Capture Photo </button>
+
+                                    <!-- Display captured image -->
+                                    <img id="capturedImage" style="display: none;" alt="Captured Image" />
+
+                                    <!-- Hidden input to store the base64 encoded image -->
+                                    <input type="hidden" id="hiddenImageBefore"  name="ImageBefore" />
+
+                                    <span asp-validation-for="ImageBefore" class="text-danger"></span>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <p style="color: white">.</p>
+                        <div class="row form-group">
+                            <div class="col-md-3 pr-0">
+                                <label asp-for="Problem" class="control-label">ปัญหาที่พบ</br>(Problem):</label>
+                            </div>
+                            <div class="col-md-9 pr-0">
+                                <textarea rows="4" asp-for="Problem" class="form-control" maxlength="3000"></textarea>
+                                <span asp-validation-for="Problem" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="card-header">
+                            <h6 class="card-title">
+                                หลังปรับปรุง/สิ่งที่คาดว่าจะเป็น (After Improve):
+                            </h6>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-3 pr-0">
+                                <label asp-for="ImageAfter" class="control-label">รูปภาพหลังการปรับปรุง </br>(After Image)</label>
+                            </div>
+                            <div class="col-md-9 pr-0">
+                                <img src="@("~/ImagesUploaded/"+ Model.ImpAfter )" asp-append-version="true" width="100%" height="100%" />
+                            </div>
+                        </div>
+                        
+                        <div class="row form-group">
+                            <div class="col-md-3 pr-0">
+                                <label asp-for="ImageAfter" class="control-label">แก้ไขรูปภาพหลังการปรับปรุง (Edit After Image)</label>
+                            </div>
+                            <div class="col-md-4 pr-0">
+
+                                <!-- Hidden file input for the captured image -->
+                                <input asp-for="ImageAfter" class="custom-file-input-after" id="customFileAfter"  accept="image/jpeg" />
+                                <label class="custom-file-label-after" for="customFileAfter" id="fileNameLabelAfter">
+
+                                    <button type="button" class="btn cur-p btn-outline-success"><i class="fa fa-folder-open"></i> คลิกเลือกไฟล์รูปภาพเท่านั้น </button>
+
+                                </label>
+                            </div>
+                            <div class="col-md-5 pr-0">
+                                <button onclick="myFunctionAfter()" type="button" class="btn cur-p btn-outline-primary"><i class="fa fa-camera-retro"></i> เปิด/ปิดกล้องหลังถ่ายรูป </button>
+                            </div>
+
+                            <div class="col-md-3 pr-0">
+                            </div>
+
+                            <div class="col-md-9 pr-0">
+
+                                <div id="myDIVAfter" style="display: none;">
+                                    <!-- Video element for camera preview -->
+                                    <video id="videoAfter" width="320" height="240" autoplay></video>
+
+                                    <!-- Canvas to draw the captured image (hidden by default) -->
+                                    <canvas id="canvasAfter" width="320" height="240" style="display: none;"></canvas>
+                                    <br />
+                                    <!-- Button to capture photo from video stream -->
+                                    <button type="button" id="captureBtnAfter" class="btn btn-warning"><i class="fa fa-camera"></i> ถ่ายรูป Capture Photo </button>
+
+                                    <!-- Display captured image -->
+                                    <img id="capturedImageAfter" style="display:none;" alt="Captured Image" />
+
+                                    <!-- Hidden input to store the base64 encoded image -->
+                                    <input type="hidden" id="hiddenImageAfter" name="ImageAfter" />
+
+                                    <span asp-validation-for="ImageAfter" class="text-danger"></span>
+                                </div>
+
+                            </div>
+                        </div>
+                        <p style="color: white">.</p>
+                        <div class="row form-group">
+                            <div class="col-md-3 pr-0">
+                                <label asp-for="Result" class="control-label">ผลที่ได้ </br>(Result):</label>
+                            </div>
+                            <div class="col-md-9 pr-0">
+                                <textarea rows="4" asp-for="Result" class="form-control" maxlength="3000"></textarea>
+                                <span asp-validation-for="Result" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row form-group">
+                            <div class="col-md-3 pr-0">
+                                <label asp-for="CostSaving" class="control-label">จำนวนเงินที่สามารถลดได้ </br>(Cost Saving):</label>
+                            </div>
+                            <div class="col-md-3 pr-0">
+                                <input asp-for="CostSaving" class="form-control" type="number" />
+                                <span asp-validation-for="CostSaving" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-3 pr-0">
+                                <label class="control-label">บาท</br>(Baht)</label>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-12 pr-0">
+                                <div class="row update ml-auto mr-auto">
+                                    <button type="submit" value="Update" class="btn btn-primary btn-round">
+                                        <div style="color: white" text-align: center;>Update</div>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+            <div class="card-footer ">
+                <div class="stats">
+                    <i class="fa fa-history"></i>
+                    <a asp-action="Index">Back to MyKaizen</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script type="text/javascript">
+        $(function () {
+            $('#NoActType').change(function () {
+                var value = $(this).val();
+                if (value == '5') {
+                    $('#ShowActContent').show();
+                } else {
+                    $('#ShowActContent').hide();
+                }
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(".custom-file-input-before").on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label-before").addClass("selected").html(fileName);
+        });
+        $(".custom-file-input-after").on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label-after").addClass("selected").html(fileName);
+        });
+    </script>
+    <script>
+        let videoStreamBefore = null;
+        let videoStreamAfter = null;
+
+        // Helper function to start video stream with back camera (environment)
+        function startVideoStream(videoElement, videoStreamSetter) {
+            if (videoStreamSetter) {
+                videoStreamSetter.getTracks().forEach(track => track.stop());
+            }
+
+            // Request the back camera (environment)
+            navigator.mediaDevices.getUserMedia({
+                video: { facingMode: { exact: "environment" } } // Use back camera
+            })
+                .then(function (stream) {
+                    videoElement.srcObject = stream;
+
+                    if (videoElement.id === 'video') {
+                        videoStreamBefore = stream;
+                    } else {
+                        videoStreamAfter = stream;
+                    }
+                })
+                .catch(function (err) {
+                    console.error("Error accessing the camera: ", err);
+                    alert(`Unable to access the back camera: ${err.message}. Please check permissions/device.`);
+                });
+        }
+
+        // Function to toggle display and start "Before" video stream
+        function myFunctionBefore() {
+            var x = document.getElementById("myDIVBefore");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+                const video = document.getElementById('video');
+                startVideoStream(video, videoStreamBefore);
+            } else {
+                x.style.display = "none";
+            }
+        }
+
+        // Function to toggle display and start "After" video stream
+        function myFunctionAfter() {
+            var x = document.getElementById("myDIVAfter");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+                const videoAfter = document.getElementById('videoAfter');
+                startVideoStream(videoAfter, videoStreamAfter);
+            } else {
+                x.style.display = "none";
+            }
+        }
+
+        // Capture image function for Before and After sections
+        function captureImage(videoElement, canvasElement, capturedImageElement, hiddenImageInput, customFileInput, fileNameLabel) {
+            const context = canvasElement.getContext('2d');
+            canvasElement.width = videoElement.videoWidth;
+            canvasElement.height = videoElement.videoHeight;
+            context.drawImage(videoElement, 0, 0, canvasElement.width, canvasElement.height);
+
+            const imageData = canvasElement.toDataURL('image/jpeg');
+            capturedImageElement.src = imageData;
+            capturedImageElement.style.display = 'block';
+            hiddenImageInput.value = imageData;
+
+            // Convert base64 to Blob and update the file input
+            fetch(imageData)
+                .then(res => res.blob())
+                .then(blob => {
+                    const file = new File([blob], `capture_${new Date().toISOString().replace(/[:.-]/g, '').slice(0, 15)}.jpg`, { type: "image/jpeg" });
+                    const dataTransfer = new DataTransfer();
+                    dataTransfer.items.add(file);
+                    customFileInput.files = dataTransfer.files;
+                    fileNameLabel.textContent = file.name;
+                });
+        }
+
+        // Capture button for Before section
+        const captureBtn = document.getElementById('captureBtn');
+        const canvas = document.getElementById('canvas');
+        const capturedImage = document.getElementById('capturedImage');
+        const hiddenImageBefore = document.getElementById('hiddenImageBefore');
+        const customFileInput = document.getElementById('customFile');
+        const fileNameLabel = document.getElementById('fileNameLabel');
+        captureBtn.addEventListener('click', function () {
+            captureImage(video, canvas, capturedImage, hiddenImageBefore, customFileInput, fileNameLabel);
+        });
+
+        // Capture button for After section
+        const captureBtnAfter = document.getElementById('captureBtnAfter');
+        const canvasAfter = document.getElementById('canvasAfter');
+        const capturedImageAfter = document.getElementById('capturedImageAfter');
+        const hiddenImageAfter = document.getElementById('hiddenImageAfter');
+        const customFileInputAfter = document.getElementById('customFileAfter');
+        const fileNameLabelAfter = document.getElementById('fileNameLabelAfter');
+        captureBtnAfter.addEventListener('click', function () {
+            captureImage(videoAfter, canvasAfter, capturedImageAfter, hiddenImageAfter, customFileInputAfter, fileNameLabelAfter);
+        });
+    </script>
+
+}
