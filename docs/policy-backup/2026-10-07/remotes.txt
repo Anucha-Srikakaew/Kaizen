@@ -1,0 +1,2 @@
+﻿origin	http://10.112.16.22:3000/ITTeam/Kaizen-Activity-System.git (fetch)
+origin	http://10.112.16.22:3000/ITTeam/Kaizen-Activity-System.git (push)

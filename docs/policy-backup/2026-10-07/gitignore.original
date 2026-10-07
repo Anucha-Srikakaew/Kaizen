@@ -1,0 +1,32 @@
+# Build output
+[Bb]in/
+[Oo]bj/
+
+# Visual Studio and local IDE state
+.gitdir/
+.vs/
+.vscode/
+*.user
+*.suo
+*.rsuser
+*.userosscache
+*.sln.docstates
+
+# Publish output
+SoluationActivitySystem/obj/Release/
+SoluationActivitySystem/bin/Release/
+
+# Local configuration and secrets
+SoluationActivitySystem/appsettings*.json
+!SoluationActivitySystem/appsettings.example.json
+
+# Runtime uploaded files
+SoluationActivitySystem/wwwroot/ImagesUploaded/*
+!SoluationActivitySystem/wwwroot/ImagesUploaded/Empty.jpg
+
+# Logs and temporary files
+*.log
+*.tmp
+*.cache
+TestResults/
+*.nupkg

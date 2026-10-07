@@ -20,9 +20,8 @@ SoluationActivitySystem/bin/Release/
 SoluationActivitySystem/appsettings*.json
 !SoluationActivitySystem/appsettings.example.json
 
-# Runtime uploaded files
-SoluationActivitySystem/wwwroot/ImagesUploaded/*
-!SoluationActivitySystem/wwwroot/ImagesUploaded/Empty.jpg
+# Project images are included in the temporary personal repository.
+# Previous internal ignore rules are in docs/policy-backup/2026-10-07/.
 
 # Logs and temporary files
 *.log
